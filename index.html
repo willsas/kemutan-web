@@ -5,11 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kemutan Support</title>
   <style>
+    /* Reset and base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
-      background-color: #06202B;
-      color: #F5EEDD;
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+      color: #fff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
@@ -17,61 +22,117 @@
       justify-content: center;
       min-height: 100vh;
       text-align: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 40px 30px;
+      box-shadow:
+        0 8px 24px rgba(0,0,0,0.7),
+        inset 0 0 20px rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: background-color 0.3s ease;
+    }
+
+    .container:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     header {
-      padding: 20px;
+      margin-bottom: 30px;
     }
 
     img {
       max-width: 160px;
       border-radius: 25%;
       margin-bottom: 20px;
+      filter: drop-shadow(0 0 8px #ff6500);
+      transition: filter 0.3s ease;
+    }
+
+    img:hover {
+      filter: drop-shadow(0 0 15px #ff6500);
     }
 
     h1 {
-      font-size: 2.5em;
+      font-size: 2.75rem;
       margin: 0;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-shadow: 0 2px 5px rgba(255, 101, 0, 0.8);
     }
 
-    p {
-      font-size: 1.2em;
-      max-width: 600px;
-      margin: 20px auto;
+    main p {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      margin: 20px 0;
+      color: #ddd;
     }
 
     a {
-      color: #F5EEDD;
-      text-decoration: underline;
-      font-weight: bold;
+      color: #ff6500;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    a:hover, a:focus {
+      border-bottom-color: #ff6500;
+      outline: none;
     }
 
     footer {
       margin-top: 40px;
-      font-size: 0.9em;
-      opacity: 0.6;
+      font-size: 0.9rem;
+      opacity: 0.5;
+      letter-spacing: 0.5px;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 400px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      main p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <!-- Replace this with your actual logo file -->
-    <img src="kemutan-app-logo.png" alt="Kemutan App Logo" />
-    <h1>Kemutan Support</h1>
-  </header>
+  <div class="container">
+    <header>
+      <!-- Replace with your actual logo file -->
+      <img src="kemutan-app-logo.png" alt="Kemutan App Logo" />
+      <h1>Kemutan Support</h1>
+    </header>
 
-  <main>
-    <p>
-      Welcome to Kemutan support. We're here to help you relive your memories by scanning photos and instantly playing attached videos.
-    </p>
-    <p>
-      Need help? Reach out to us at 
-      <a href="mailto:willasaskara+kemutansupport@gmail.com">Contact E-mail</a>
-    </p>
-  </main>
+    <main>
+      <p>
+        Welcome to Kemutan support. We're here to help you relive your memories by scanning photos and instantly playing attached videos.
+      </p>
+      <p>
+        Need help? Reach out to us at 
+        <a href="mailto:willasaskara+kemutansupport@gmail.com">Contact E-mail</a>
+      </p>
+    </main>
 
-  <footer>
-    &copy; 2025 Kemutan. All rights reserved.
-  </footer>
+    <footer>
+      &copy; 2025 Kemutan. All rights reserved.
+    </footer>
+  </div>
 </body>
 </html>
