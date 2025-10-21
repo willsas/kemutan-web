@@ -1,168 +1,230 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kemutan App: Photos to Life</title>
-
-  <!-- Favicon using your logo -->
-  <link rel="icon" type="image/png" href="kemutan-app-logo.png" />
-  <link rel="shortcut icon" href="kemutan-app-logo.png" type="image/png" />
-  <link rel="apple-touch-icon" href="kemutan-app-logo.png" />
-
-  <style>
-    /* Reset and base */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 600px;
-      width: 100%;
-      background-color: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      padding: 40px 30px;
-      box-shadow:
-        0 8px 24px rgba(0,0,0,0.7),
-        inset 0 0 20px rgba(255,255,255,0.05);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: background-color 0.3s ease;
-    }
-
-    .container:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    header {
-      margin-bottom: 30px;
-    }
-
-    img.logo {
-      max-width: 160px;
-      border-radius: 25%;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 0 8px #ff6500);
-      transition: filter 0.3s ease;
-    }
-
-    img.logo:hover {
-      filter: drop-shadow(0 0 15px #ff6500);
-    }
-
-    h1 {
-      font-size: 2.75rem;
-      margin: 0;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-shadow: 0 2px 5px rgba(255, 101, 0, 0.8);
-    }
-
-    main p {
-      font-size: 1.25rem;
-      line-height: 1.6;
-      margin: 20px 0;
-      color: #ddd;
-    }
-
-    a {
-      color: #ff6500;
-      text-decoration: none;
-      font-weight: 600;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s ease;
-    }
-
-    a:hover, a:focus {
-      border-bottom-color: #ff6500;
-      outline: none;
-    }
-
-    .app-store-button {
-      display: inline-block;
-      margin-top: 20px;
-      transition: transform 0.2s ease;
-    }
-
-    .app-store-button:hover {
-      transform: scale(1.05);
-    }
-
-    .app-store-button img {
-      height: 50px;
-      width: auto;
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      opacity: 0.5;
-      letter-spacing: 0.5px;
-    }
-
-    /* Responsive tweaks */
-    @media (max-width: 400px) {
-      .container {
-        padding: 30px 20px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      main p {
-        font-size: 1rem;
-      }
-
-      .app-store-button img {
-        height: 45px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <img src="kemutan-app-logo.png" alt="Kemutan App Logo" class="logo" />
-      <h1>Kemutan Support</h1>
+  <head>
+  <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kemutan — Memories in AR</title>
+  <meta name="description" content="Kemutan scans printed photos and plays linked videos in augmented reality. Relive moments instantly." />
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Kemutan — Memories in AR" />
+  <meta property="og:description" content="Scan printed photos and play linked videos in augmented reality. Relive moments instantly." />
+  <meta property="og:image" content="assets/kemutan-app-logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kemutan — Memories in AR" />
+  <meta name="twitter:description" content="Scan printed photos and play linked videos in augmented reality." />
+  <meta name="twitter:image" content="assets/kemutan-app-logo.png" />
+  <!-- Apple / mobile -->
+  <link rel="apple-touch-icon" href="assets/kemutan-app-logo.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Kemutan">
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/png" href="assets/kemutan-app-logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" as="video" href="https://github.com/willsas/kemutan-asset/raw/refs/heads/main/demo.mp4" type="video/mp4">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+  <a class="brand" href="index.html">
+          <img src="assets/kemutan-app-logo.png" alt="Kemutan logo" class="logo" />
+          <span class="brand-name">Kemutan</span>
+        </a>
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+          <a href="#features">Features</a>
+          <a href="#gallery">Screenshots</a>
+          <a href="privacy.html">Privacy</a>
+          <a class="btn primary nav-cta" href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener">Download</a>
+        </nav>
+      </div>
     </header>
 
     <main>
-      <p>
-        Welcome to Kemutan support. We're here to help you relive your memories by scanning photos and instantly playing attached videos.
-      </p>
-      <p>
-        Need help? Reach out to us at 
-        <a href="mailto:willasaskara+kemutansupport@gmail.com">Contact E-mail</a>
-      </p>
+      <section class="hero" aria-label="Product demo">
+        <div class="container">
+          <div class="hero-card">
+            <div class="hero-copy">
+              <h1>Scan printed photos. Relive the moment in AR.</h1>
+              <p class="lead">Kemutan links videos to printed photos and plays them over the photo for an immersive, private memory experience.</p>
+              <div class="hero-ctas">
+                <a id="features-btn" class="btn primary" href="#features">Explore features</a>
+                <!-- App Store download button -->
+                <a href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener" class="app-store-button">
+                  <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                       alt="Download on the App Store">
+                </a>
+              </div>
+              <div class="preview-stack" aria-hidden="false">
+                <div class="preview-item"><img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-1.png" alt="preview 1"/></div>
+                <div class="preview-item"><img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-2.png" alt="preview 2"/></div>
+                <div class="preview-item"><img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-3.png" alt="preview 3"/></div>
+                <div class="preview-item"><img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-4.png" alt="preview 4"/></div>
+              </div>
+            </div>
+            <div class="hero-media">
+              <div class="device-frame" aria-hidden="true">
+                <div class="device-screen">
+                  <video class="hero-video" autoplay muted loop playsinline poster="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-1.png" aria-hidden="true">
+                    <source src="https://github.com/willsas/kemutan-asset/raw/refs/heads/main/demo.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <!-- decorative bezel elements -->
+                <div class="device-bezel device-top"></div>
+                <div class="device-bezel device-bottom"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <!-- App Store download button -->
-      <a href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener" class="app-store-button">
-        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-             alt="Download on the App Store">
-      </a>
+      <!-- Download / CTA section -->
+      <section class="download-section container">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap">
+          <div>
+            <h2>Get Kemutan</h2>
+            <p class="muted">Download the app to start linking your printed photos to videos — simple, private, and easy sync across iCloud account.</p>
+          </div>
+            <div style="display:flex;gap:12px;align-items:center">
+            <!-- App Store download button -->
+            <a href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener" class="app-store-button">
+              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main features as card layout -->
+      <section id="features" class="container features">
+        <h2>Main features</h2>
+        <p class="muted">Core capabilities of Kemutan — tap a card to learn more.</p>
+        <div class="features-grid">
+          <article class="feature-card" data-feature="scan" role="button" tabindex="0" aria-label="Feature: Scan Photo">
+            <div class="fc-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="2" y="6" width="20" height="12" rx="2" fill="#fff" opacity="0.06"/>
+                <circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="1.2" opacity="0.9" fill="none"/>
+                <path d="M7 7 L8.5 5" stroke="#fff" stroke-width="1" stroke-linecap="round" opacity="0.9"/>
+              </svg>
+            </div>
+            <div class="feature-body">
+              <h3>Scan Photo</h3>
+              <p>Recognizes printed photos and links the matching video for AR playback.</p>
+            </div>
+          </article>
+
+          <article class="feature-card" data-feature="icloud" role="button" tabindex="0" aria-label="Feature: iCloud Sync">
+            <div class="fc-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M7 17h10a4 4 0 0 0 0-8 5 5 0 0 0-9.9 1A3.5 3.5 0 0 0 7 17z" fill="#fff" opacity="0.06"/>
+                <path d="M7 17h10" stroke="#fff" stroke-width="0.9" stroke-linecap="round" opacity="0.9"/>
+              </svg>
+            </div>
+            <div class="feature-body">
+              <h3>iCloud Sync</h3>
+              <p>Photos and videos are stored in iCloud and automatically sync across devices using the same iCloud account.</p>
+            </div>
+          </article>
+
+          <article class="feature-card" data-feature="shared" role="button" tabindex="0" aria-label="Feature: Shared Albums">
+            <div class="fc-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="8" cy="8" r="2" fill="#fff" opacity="0.06"/>
+                <circle cx="16" cy="8" r="2" fill="#fff" opacity="0.06"/>
+                <path d="M3 20c2-4 8-4 9-4s7 0 9 4" stroke="#fff" stroke-width="0.9" stroke-linecap="round" opacity="0.9" fill="none"/>
+              </svg>
+            </div>
+            <div class="feature-body">
+              <h3>Shared Albums (CloudKit)</h3>
+              <p>Create Shared Albums to build Memories with family and friends; contributors can add photos and videos to shared collections.</p>
+            </div>
+          </article>
+
+          <article class="feature-card" data-feature="ar" role="button" tabindex="0" aria-label="Feature: AR Playback">
+            <div class="fc-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 5v14l11-7L8 5z" fill="#fff" opacity="0.08"/>
+                <path d="M8 5v14l11-7L8 5z" stroke="#fff" stroke-width="0.8" stroke-linejoin="round" opacity="0.9" fill="none"/>
+              </svg>
+            </div>
+            <div class="feature-body">
+              <h3>AR Playback</h3>
+              <p>Play linked videos right over the printed photo for an immersive moment.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+  <section id="gallery" class="container gallery">
+    <h2>Screenshots</h2>
+    <p class="muted">Sneak peek — these are screenshots of the app interface.</p>
+        <div class="cards">
+          <article class="card" data-title="Summer Reunion" data-desc="App screenshot showing the camera scan UI." data-full="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-1.png" tabindex="0" role="button" aria-label="Open screenshot Summer Reunion">
+            <div class="card-media">
+              <img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-1.png" alt="memory 1" />
+            </div>
+          </article>
+
+          <article class="card" data-title="Road Trip" data-desc="Screenshot of the playback controls inside the app." data-full="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-2.png" tabindex="0" role="button" aria-label="Open screenshot Road Trip">
+            <div class="card-media">
+              <img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-2.png" alt="memory 2" />
+            </div>
+          </article>
+
+          <article class="card" data-title="Birthday Surprise" data-desc="Screenshot of the AR overlay in action." data-full="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-3.png" tabindex="0" role="button" aria-label="Open screenshot Birthday Surprise">
+            <div class="card-media">
+              <img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-3.png" alt="memory 3" />
+            </div>
+          </article>
+
+          <article class="card" data-title="Cozy Evening" data-desc="Settings and share screen screenshot." data-full="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-4.png" tabindex="0" role="button" aria-label="Open screenshot Cozy Evening">
+            <div class="card-media">
+              <img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-4.png" alt="memory 4" />
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- end gallery (screenshots only) -->
+
+      <!-- Features modal -->
+      <div id="features-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-panel">
+          <button class="modal-close" aria-label="Close">✕</button>
+          <h3>Main Features</h3>
+          <ul>
+            <li><strong>iCloud sync:</strong> Photos and videos are stored in iCloud and automatically sync across devices signed into the same iCloud account.</li>
+            <li><strong>Shared Albums (CloudKit):</strong> Create Shared Albums to build Memories with family and friends; invite collaborators and contribute photos and videos to shared collections.</li>
+            <li><strong>AR Playback:</strong> Scan a printed photo and the linked video plays over the photo in augmented reality.</li>
+            <li><strong>Privacy & control:</strong> Owners control sharing and membership of shared albums; data uses Apple Cloud services.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Photo detail modal (image only) -->
+      <div id="photo-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-panel">
+          <button class="modal-close" aria-label="Close">✕</button>
+          <div class="photo-controls" aria-hidden="false">
+            <button id="prev-photo" class="ctrl" aria-label="Previous photo">‹</button>
+            <button id="next-photo" class="ctrl" aria-label="Next photo">›</button>
+            <a id="download-photo" class="ctrl download" href="#" download aria-label="Download photo">⬇</a>
+          </div>
+          <div class="photo-detail">
+            <img id="photo-full" src="" alt="" />
+          </div>
+        </div>
+      </div>
     </main>
 
-    <footer>
-      &copy; 2025 Kemutan. All rights reserved.
+    <footer class="site-footer">
+      <div class="container footer-inner">
+  <div class="left">© <span id="year"></span> Kemutan — All rights reserved.</div>
+  <div class="right"><a href="privacy.html">Privacy</a></div>
+      </div>
     </footer>
-  </div>
-</body>
+
+    <script src="script.js" defer></script>
+  <a class="mobile-download-cta" href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener">Get Kemutan — Free on the App Store</a>
+  </body>
 </html>
