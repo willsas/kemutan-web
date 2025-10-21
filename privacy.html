@@ -1,152 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kemutan Privacy Policy</title>
-  <style>
-    /* Reset and base */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kemutan — Privacy Policy</title>
+  <meta name="description" content="Privacy policy for Kemutan app." />
+  <meta name="theme-color" content="#071426" />
+  <link rel="icon" type="image/png" href="assets/kemutan-app-logo.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+  <a class="brand" href="index.html">
+          <img src="assets/kemutan-app-logo.png" alt="Kemutan logo" class="logo" />
+          <span class="brand-name">Kemutan</span>
+        </a>
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+    </header>
 
-    body {
-      margin: 0;
-      padding: 20px;
-      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
-      color: #ddd;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+    <main>
+      <section class="container" style="padding:40px 24px;max-width:900px;">
+        <h1>Privacy Policy</h1>
+        <p class="muted">Effective date: May 31, 2025</p>
 
-    .container {
-      max-width: 700px;
-      width: 100%;
-      background-color: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      padding: 40px 30px;
-      box-shadow:
-        0 8px 24px rgba(0,0,0,0.7),
-        inset 0 0 20px rgba(255,255,255,0.05);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: background-color 0.3s ease;
-      color: #eee;
-    }
+        <p><strong>Kemutan</strong> is committed to protecting your privacy. This page explains what we collect and why.</p>
 
-    .container:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
+        <h2>Information we collect</h2>
+        <p>We use analytics to collect anonymized, non-identifying information to improve the app. This may include:</p>
+        <ul>
+          <li>Anonymous usage events (screen views, button taps)</li>
+          <li>Crash and performance diagnostics</li>
+          <li>Non-personal device identifiers</li>
+        </ul>
 
-    h1, h2 {
-      color: #ff6500;
-      margin-top: 0;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 6px rgba(255, 101, 0, 0.8);
-    }
+        <h2>Device permissions</h2>
+        <p>The app requests camera access to scan printed photos and access to your photo library to display or save content you choose. These permissions are only used for app functionality and are not shared without your consent.</p>
 
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-    }
+        <h2>How we use data</h2>
+        <p>Collected analytics help us improve features and stability. We do not sell personal data. Any analytics we use are configured to avoid collecting personal content.</p>
 
-    h2 {
-      font-size: 1.8rem;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
+        <h2>Third-party services</h2>
+        <p>We rely on trusted services (for example, Firebase) for analytics and crash reporting. Please review their privacy pages for details: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase Privacy</a>.</p>
 
-    p, ul {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin: 0 0 1rem 0;
-      color: #ddd;
-    }
+        <h2>Contact</h2>
+        <p>Questions or concerns? Contact: <a href="mailto:willasaskara+kemutansupport@gmail.com">E-mail</a></p>
+      </section>
+    </main>
 
-    ul {
-      padding-left: 20px;
-    }
-
-    a {
-      color: #ff6500;
-      text-decoration: none;
-      font-weight: 600;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s ease;
-    }
-
-    a:hover, a:focus {
-      border-bottom-color: #ff6500;
-      outline: none;
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      opacity: 0.5;
-      letter-spacing: 0.5px;
-      text-align: center;
-      color: #bbb;
-    }
-
-    /* Responsive tweaks */
-    @media (max-width: 480px) {
-      .container {
-        padding: 30px 20px;
-      }
-      h1 {
-        font-size: 2.2rem;
-      }
-      h2 {
-        font-size: 1.4rem;
-      }
-      p, ul {
-        font-size: 1rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Privacy Policy</h1>
-    <p>Effective date: May 31, 2025</p>
-
-    <p><strong>Kemutan</strong> values your privacy. This policy outlines how we collect, use, and protect your information when you use our app.</p>
-
-    <h2>1. Information We Collect</h2>
-    <p>We use <strong>Firebase Analytics</strong> to collect anonymized data about how users interact with our app. This may include:</p>
-    <ul>
-      <li>App usage statistics (screen views, button taps, etc.)</li>
-      <li>Crash and performance reports</li>
-      <li>Device identifiers (non-personal)</li>
-    </ul>
-
-    <h2>2. Use of Device Features</h2>
-    <p>Kemutan requires access to your device’s <strong>camera</strong> to scan printed photos and your <strong>photo library</strong> to display or save content. These permissions are used only for app functionality and never stored or shared.</p>
-
-    <h2>3. How We Use Your Data</h2>
-    <p>We use analytics data to improve the app experience and fix bugs. We do not sell, rent, or share your personal data with third parties.</p>
-
-    <h2>4. Third-Party Services</h2>
-    <p>We use Firebase, a service provided by Google. For more information, please review <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase's Privacy Policy</a>.</p>
-
-    <h2>5. Data Security</h2>
-    <p>We take reasonable precautions to protect your data. Firebase anonymizes data and transmits it securely using encryption protocols.</p>
-
-    <h2>6. Contact</h2>
-    <p>If you have questions or concerns about this policy, contact us at:  
-      <a href="mailto:willasaskara+kemutansupport@gmail.com">E-mail</a>
-    </p>
-
-    <footer>
-      &copy; 2025 Kemutan. All rights reserved.
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="left">© <span id="year"></span> Kemutan — All rights reserved.</div>
+  <div class="right"><a href="index.html">Home</a></div>
+      </div>
     </footer>
-  </div>
-</body>
+
+    <script src="script.js" defer></script>
+  </body>
 </html>
