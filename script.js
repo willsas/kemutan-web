@@ -1,155 +1,118 @@
-// Minimal interactivity for Kemutan landing page
-document.addEventListener('DOMContentLoaded', () => {
-  // -- small utilities
-  const qs = (s, el = document) => el.querySelector(s);
-  const qsa = (s, el = document) => Array.from(el.querySelectorAll(s));
+/* Kemutan — the only three things this page needs JavaScript for.
+   No framework, no dependencies, ~2KB. Everything else is CSS. */
 
-  // set copyright year
-  const yearEl = qs('#year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+(() => {
+  "use strict";
 
-  // dark-mode removed: no theme toggle behavior
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // hero video preview on hover of thumbnails
-  const heroVideo = qs('.hero-video');
-  qsa('.preview-item img').forEach((img, i) => {
-    img.addEventListener('mouseenter', () => {
-      if (!heroVideo) return;
-      try { heroVideo.currentTime = Math.min(i * 1.2, 3); } catch (e) {}
-      heroVideo.play().catch(() => {});
+  /* ---------- Footer year ---------- */
+
+  const year = document.getElementById("year");
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  /* ---------- Demo video ----------
+     The clip is `preload="none"`, so nothing downloads until it's actually on
+     screen — the poster does the work above the fold. It also pauses when
+     scrolled away, and never autoplays for anyone who asked for less motion. */
+
+  const video = document.getElementById("demo-video");
+
+  if (video) {
+    video.addEventListener("click", () => {
+      video.paused ? video.play().catch(() => {}) : video.pause();
     });
-  });
 
-  // Ensure hero video will play after a user gesture on mobile where autoplay may be blocked
-  const startHeroOnInteraction = () => { if (heroVideo) heroVideo.play().catch(()=>{}); window.removeEventListener('click', startHeroOnInteraction); };
-  window.addEventListener('click', startHeroOnInteraction, { once: true });
+    if (reduceMotion) {
+      video.setAttribute("controls", "");
+    } else if ("IntersectionObserver" in window) {
+      const watcher = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              video.play().catch(() => {});
+            } else {
+              video.pause();
+            }
+          }
+        },
+        { threshold: 0.35 }
+      );
+      watcher.observe(video);
+    } else {
+      video.play().catch(() => {});
+    }
+  }
 
-  // Fallback: some browsers or overlays can block anchor clicks on badges.
-  // Add a robust click handler that opens the target in a new tab/window if the default navigation doesn't occur.
-  function addBadgeFallback() {
-    const openUrl = (href) => {
-      try {
-        // prefer window.open to bypass cases where anchor clicks are swallowed
-        const win = window.open(href, '_blank');
-        if (win && win.focus) win.focus();
-      } catch (e) {
-        // last-resort navigation
-        location.href = href;
-      }
+  /* ---------- Screenshot lightbox ----------
+     <dialog> handles Escape, the backdrop and focus; this only tracks which
+     shot is showing. */
+
+  const dialog = document.getElementById("lightbox");
+  const full = document.getElementById("lightbox-img");
+  const shots = Array.from(document.querySelectorAll(".shot"));
+
+  if (dialog && full && shots.length) {
+    const sources = shots.map((shot) => {
+      const img = shot.querySelector("img");
+      return { src: img.currentSrc || img.src, alt: img.alt };
+    });
+
+    let index = 0;
+
+    const show = (next) => {
+      index = (next + sources.length) % sources.length;
+      full.src = sources[index].src;
+      full.alt = sources[index].alt;
     };
 
-    qsa('.app-badge, .nav-cta').forEach((el) => {
-      // ensure it's an anchor or has an href
-      const href = el.getAttribute('href') || el.querySelector && el.querySelector('a')?.getAttribute('href');
-      if (!href) return;
-      // Click handler: try native, then fallback to window.open
-      el.addEventListener('click', (ev) => {
-        // If the anchor worked normally, we don't need anything; but some overlays prevent it.
-        // Use setTimeout to detect if navigation was triggered — fallback immediately to open.
-        // To avoid double-opening, prevent default and open programmatically.
-        ev.preventDefault();
-        openUrl(href);
+    shots.forEach((shot, position) => {
+      shot.addEventListener("click", () => {
+        show(position);
+        dialog.showModal();
       });
-      // also support touchend for some mobile quirks
-      el.addEventListener('touchend', (ev) => {
-        ev.preventDefault();
-        openUrl(href);
-      }, { passive: false });
+    });
+
+    document.getElementById("lightbox-prev").addEventListener("click", () => show(index - 1));
+    document.getElementById("lightbox-next").addEventListener("click", () => show(index + 1));
+    document.getElementById("lightbox-close").addEventListener("click", () => dialog.close());
+
+    // Clicking the backdrop (anywhere that isn't the image or the controls).
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") show(index - 1);
+      if (event.key === "ArrowRight") show(index + 1);
     });
   }
-  addBadgeFallback();
 
-  // modal helpers
-  function openModal(modal) {
-    if (!modal) return;
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-    const focusable = modal.querySelector('button, [href], input, [tabindex]:not([tabindex="-1"])');
-    if (focusable) focusable.focus();
-  }
-  function closeModal(modal) {
-    if (!modal) return;
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
+  /* ---------- Reveal on scroll ----------
+     Purely additive: the markup ships visible for anyone without
+     IntersectionObserver, and the CSS opts out under reduced motion. */
+
+  const revealables = document.querySelectorAll(".reveal");
+
+  if (!revealables.length) return;
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    revealables.forEach((el) => el.classList.add("is-in"));
+    return;
   }
 
-  // Features modal: open via button or feature-card
-  const featuresModal = qs('#features-modal');
-  qsa('#features-btn, .feature-card').forEach(el => {
-    el.addEventListener('click', (e) => {
-      const card = e.currentTarget.closest('.feature-card');
-      const key = card ? card.getAttribute('data-feature') : null;
-      if (featuresModal && key) {
-        const panel = qs('.modal-panel', featuresModal);
-        if (panel) {
-          let html = '<h3>Main features</h3>';
-          if (key === 'scan') html += '<p><strong>Scan Photo</strong> — Fast printed-photo recognition and seamless AR overlay.</p>';
-          else if (key === 'icloud') html += '<p><strong>iCloud Sync</strong> — Secure sync across your devices via iCloud.</p>';
-          else if (key === 'shared') html += '<p><strong>Shared Albums</strong> — Collaborate with friends and family via Shared Albums.</p>';
-          else if (key === 'ar') html += '<p><strong>AR Playback</strong> — Play videos directly over the printed photo in augmented reality.</p>';
-          else html += panel.innerHTML;
-          html += '<button class="modal-close" aria-label="Close">Close</button>';
-          panel.innerHTML = html;
-          qs('.modal-close', panel).addEventListener('click', () => closeModal(featuresModal));
-        }
-      }
-      if (featuresModal) openModal(featuresModal);
-    });
-  });
+  const revealer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry, position) => {
+        if (!entry.isIntersecting) return;
+        // A short stagger so a row of cards lands one after another.
+        entry.target.style.transitionDelay = `${Math.min(position * 60, 240)}ms`;
+        entry.target.classList.add("is-in");
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
+  );
 
-  // Photo gallery modal
-  const photoModal = qs('#photo-modal');
-  const photoFull = qs('#photo-full');
-  const cards = qsa('.card');
-  let currentIndex = -1;
-
-  function openPhotoAt(index) {
-    if (!cards.length) return;
-    const idx = ((index % cards.length) + cards.length) % cards.length;
-    const card = cards[idx];
-    const full = card && card.getAttribute('data-full');
-    if (photoFull && full) photoFull.src = full;
-    const download = qs('#download-photo');
-    if (download && full) download.href = full;
-    currentIndex = idx;
-    openModal(photoModal);
-  }
-
-  cards.forEach((c, i) => {
-    c.addEventListener('click', () => openPhotoAt(i));
-    c.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPhotoAt(i); } });
-  });
-
-  qs('#prev-photo')?.addEventListener('click', () => openPhotoAt(currentIndex - 1));
-  qs('#next-photo')?.addEventListener('click', () => openPhotoAt(currentIndex + 1));
-
-  // close handlers for any modal
-  qsa('.modal .modal-close').forEach(btn => btn.addEventListener('click', (e) => {
-    const modal = e.currentTarget.closest('.modal');
-    closeModal(modal);
-  }));
-  qsa('.modal .modal-backdrop').forEach(back => back.addEventListener('click', (e) => {
-    const modal = e.currentTarget.closest('.modal');
-    closeModal(modal);
-  }));
-
-  // global keyboard handlers
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') qsa('.modal.open').forEach(m => closeModal(m));
-    const openPhoto = document.querySelector('#photo-modal.open');
-    if (openPhoto) {
-      if (e.key === 'ArrowLeft') openPhotoAt(currentIndex - 1);
-      if (e.key === 'ArrowRight') openPhotoAt(currentIndex + 1);
-    }
-  });
-
-  // focus containment: simple trap
-  document.addEventListener('focusin', (e) => {
-    const open = document.querySelector('.modal.open');
-    if (!open) return;
-    if (!open.contains(e.target)) {
-      const close = qs('.modal-close', open);
-      if (close) close.focus();
-    }
-  });
-});
+  revealables.forEach((el) => revealer.observe(el));
+})();

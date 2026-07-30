@@ -1,63 +1,97 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kemutan — Privacy Policy</title>
-  <meta name="description" content="Privacy policy for Kemutan app." />
-  <meta name="theme-color" content="#071426" />
+  <meta name="description" content="What Kemutan collects, why, and who it goes to." />
+  <link rel="canonical" href="https://www.kemutan.com/privacy" />
+  <meta name="theme-color" content="#f4ecd8" />
+  <meta name="color-scheme" content="light" />
+  <meta name="robots" content="index, follow" />
+
   <link rel="icon" type="image/png" href="assets/kemutan-app-logo.png" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header" role="banner">
-      <div class="container header-inner">
-  <a class="brand" href="index.html">
-          <img src="assets/kemutan-app-logo.png" alt="Kemutan logo" class="logo" />
-          <span class="brand-name">Kemutan</span>
+  <link rel="apple-touch-icon" href="assets/kemutan-app-logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Caveat:wght@600;700&family=Nunito:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Flips before first paint, so the scroll-reveal styles only ever apply
+       when there's JavaScript to undo them. Without this, a blocked script
+       would leave the whole page at opacity 0. -->
+  <script>
+    document.documentElement.classList.remove("no-js");
+    document.documentElement.classList.add("js");
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="masthead">
+    <div class="container masthead__inner">
+      <a class="brand" href="./">
+        <img src="assets/kemutan-app-logo.png" alt="" width="40" height="40" />
+        <span>Kemutan</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="./">Home</a>
+        <a class="app-store" href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download Kemutan on the App Store" />
         </a>
-        <nav class="nav" role="navigation" aria-label="Main navigation">
-          <a href="index.html">Home</a>
-        </nav>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section>
+      <div class="container">
+        <div class="legal legal__card">
+          <p class="note">the boring but important bit —</p>
+          <h1>Privacy Policy</h1>
+          <p class="muted">Effective date: May 31, 2025</p>
+
+          <hr class="rule" />
+
+          <p><strong>Kemutan</strong> is committed to protecting your privacy. This page explains what we collect and why.</p>
+
+          <h2>Information we collect</h2>
+          <p>We use analytics to collect anonymized, non-identifying information to improve the app. This may include:</p>
+          <ul>
+            <li>Anonymous usage events (screen views, button taps)</li>
+            <li>Crash and performance diagnostics</li>
+            <li>Non-personal device identifiers</li>
+          </ul>
+
+          <h2>Device permissions</h2>
+          <p>The app requests camera access to scan printed photos and access to your photo library to display or save content you choose. These permissions are only used for app functionality and are not shared without your consent.</p>
+
+          <h2>How we use data</h2>
+          <p>Collected analytics help us improve features and stability. We do not sell personal data. Any analytics we use are configured to avoid collecting personal content.</p>
+
+          <h2>Third-party services</h2>
+          <p>We rely on trusted services (for example, Firebase) for analytics and crash reporting. Please review their privacy pages for details: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase Privacy</a>.</p>
+
+          <h2>Contact</h2>
+          <p>Questions or concerns? Email <a href="mailto:willasaskara+kemutansupport@gmail.com">willasaskara+kemutansupport@gmail.com</a>.</p>
+        </div>
       </div>
-    </header>
+    </section>
+  </main>
 
-    <main>
-      <section class="container" style="padding:40px 24px;max-width:900px;">
-        <h1>Privacy Policy</h1>
-        <p class="muted">Effective date: May 31, 2025</p>
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>© <span id="year">2026</span> Kemutan · dump it now. relive it later.</p>
+      <nav aria-label="Footer">
+        <a href="./">Home</a>
+        <a href="mailto:willasaskara+kemutansupport@gmail.com">Support</a>
+        <a href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener">App Store</a>
+      </nav>
+    </div>
+  </footer>
 
-        <p><strong>Kemutan</strong> is committed to protecting your privacy. This page explains what we collect and why.</p>
-
-        <h2>Information we collect</h2>
-        <p>We use analytics to collect anonymized, non-identifying information to improve the app. This may include:</p>
-        <ul>
-          <li>Anonymous usage events (screen views, button taps)</li>
-          <li>Crash and performance diagnostics</li>
-          <li>Non-personal device identifiers</li>
-        </ul>
-
-        <h2>Device permissions</h2>
-        <p>The app requests camera access to scan printed photos and access to your photo library to display or save content you choose. These permissions are only used for app functionality and are not shared without your consent.</p>
-
-        <h2>How we use data</h2>
-        <p>Collected analytics help us improve features and stability. We do not sell personal data. Any analytics we use are configured to avoid collecting personal content.</p>
-
-        <h2>Third-party services</h2>
-        <p>We rely on trusted services (for example, Firebase) for analytics and crash reporting. Please review their privacy pages for details: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase Privacy</a>.</p>
-
-        <h2>Contact</h2>
-        <p>Questions or concerns? Contact: <a href="mailto:willasaskara+kemutansupport@gmail.com">E-mail</a></p>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <div class="left">© <span id="year"></span> Kemutan — All rights reserved.</div>
-  <div class="right"><a href="index.html">Home</a></div>
-      </div>
-    </footer>
-
-    <script src="script.js" defer></script>
-  </body>
+  <script src="script.js" defer></script>
+</body>
 </html>

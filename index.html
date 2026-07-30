@@ -1,230 +1,296 @@
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="en" class="no-js">
+<head>
   <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kemutan — Memories in AR</title>
-  <meta name="description" content="Kemutan scans printed photos and plays linked videos in augmented reality. Relive moments instantly." />
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Kemutan — Memories in AR" />
-  <meta property="og:description" content="Scan printed photos and play linked videos in augmented reality. Relive moments instantly." />
-  <meta property="og:image" content="assets/kemutan-app-logo.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Kemutan — Memories in AR" />
-  <meta name="twitter:description" content="Scan printed photos and play linked videos in augmented reality." />
-  <meta name="twitter:image" content="assets/kemutan-app-logo.png" />
-  <!-- Apple / mobile -->
-  <link rel="apple-touch-icon" href="assets/kemutan-app-logo.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Kemutan">
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kemutan — dump it now, relive it later</title>
+  <meta name="description" content="Kemutan is a shared photo dump you fill with friends. Fill it up and its Stories unlock — then point your camera at a printed photo and watch the video play on top of it." />
+  <link rel="canonical" href="https://www.kemutan.com/" />
+  <meta name="theme-color" content="#f4ecd8" />
+  <meta name="color-scheme" content="light" />
+
+  <!-- Social. Absolute URLs: crawlers don't resolve relative ones. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.kemutan.com/" />
+  <meta property="og:site_name" content="Kemutan" />
+  <meta property="og:title" content="Kemutan — dump it now, relive it later" />
+  <meta property="og:description" content="A shared photo dump you fill with friends. Fill it up and its Stories unlock — then scan a printed photo and the video plays on top of it." />
+  <meta property="og:image" content="https://www.kemutan.com/assets/kemutan-app-logo.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kemutan — dump it now, relive it later" />
+  <meta name="twitter:description" content="A shared photo dump you fill with friends. Fill it up and its Stories unlock." />
+  <meta name="twitter:image" content="https://www.kemutan.com/assets/kemutan-app-logo.png" />
+
   <link rel="icon" type="image/png" href="assets/kemutan-app-logo.png" />
+  <link rel="apple-touch-icon" href="assets/kemutan-app-logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Caveat:wght@600;700&family=Nunito:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preload" as="video" href="https://github.com/willsas/kemutan-asset/raw/refs/heads/main/demo.mp4" type="video/mp4">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <header class="site-header" role="banner">
-      <div class="container header-inner">
-  <a class="brand" href="index.html">
-          <img src="assets/kemutan-app-logo.png" alt="Kemutan logo" class="logo" />
-          <span class="brand-name">Kemutan</span>
+
+  <!-- Flips before first paint, so the scroll-reveal styles only ever apply
+       when there's JavaScript to undo them. Without this, a blocked script
+       would leave the whole page at opacity 0. -->
+  <script>
+    document.documentElement.classList.remove("no-js");
+    document.documentElement.classList.add("js");
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kemutan",
+    "applicationCategory": "PhotoApplication",
+    "operatingSystem": "iOS 18.0 or later",
+    "url": "https://www.kemutan.com/",
+    "installUrl": "https://apps.apple.com/app/id6746507955",
+    "description": "A shared photo dump you fill with friends. Fill it up and its Stories unlock, and printed photos come to life in AR.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="masthead">
+    <div class="container masthead__inner">
+      <a class="brand" href="./">
+        <img src="assets/kemutan-app-logo.png" alt="" width="40" height="40" />
+        <span>Kemutan</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#shots">Screenshots</a>
+        <a href="privacy.html">Privacy</a>
+        <a class="app-store" href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download Kemutan on the App Store" />
         </a>
-        <nav class="nav" role="navigation" aria-label="Main navigation">
-          <a href="#features">Features</a>
-          <a href="#gallery">Screenshots</a>
-          <a href="privacy.html">Privacy</a>
-          <a class="btn primary nav-cta" href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener">Download</a>
-        </nav>
-      </div>
-    </header>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-      <section class="hero" aria-label="Product demo">
-        <div class="container">
-          <div class="hero-card">
-            <div class="hero-copy">
-              <h1>Scan printed photos. Relive the moment in AR.</h1>
-              <p class="lead">Kemutan links videos to printed photos and plays them over the photo for an immersive, private memory experience.</p>
-              <div class="hero-ctas">
-                <a id="features-btn" class="btn primary" href="#features">Explore features</a>
-                <!-- App Store download button -->
-                <a href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener" class="app-store-button">
-                  <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-                       alt="Download on the App Store">
-                </a>
-              </div>
-              <div class="preview-stack" aria-hidden="false">
-                <div class="preview-item"><img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-1.png" alt="preview 1"/></div>
-                <div class="preview-item"><img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-2.png" alt="preview 2"/></div>
-                <div class="preview-item"><img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-3.png" alt="preview 3"/></div>
-                <div class="preview-item"><img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-4.png" alt="preview 4"/></div>
-              </div>
-            </div>
-            <div class="hero-media">
-              <div class="device-frame" aria-hidden="true">
-                <div class="device-screen">
-                  <video class="hero-video" autoplay muted loop playsinline poster="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-1.png" aria-hidden="true">
-                    <source src="https://github.com/willsas/kemutan-asset/raw/refs/heads/main/demo.mp4" type="video/mp4">
-                  </video>
-                </div>
-                <!-- decorative bezel elements -->
-                <div class="device-bezel device-top"></div>
-                <div class="device-bezel device-bottom"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Download / CTA section -->
-      <section class="download-section container">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap">
-          <div>
-            <h2>Get Kemutan</h2>
-            <p class="muted">Download the app to start linking your printed photos to videos — simple, private, and easy sync across iCloud account.</p>
-          </div>
-            <div style="display:flex;gap:12px;align-items:center">
-            <!-- App Store download button -->
-            <a href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener" class="app-store-button">
-              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+  <main id="main">
+    <!-- ================= Hero ================= -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="wordmark">Kemutan</p>
+          <h1>The photo dump that's worth opening again.</h1>
+          <p class="lead">
+            Start a dump, invite the people who were there, and throw the messy
+            photos in. Fill it up and its Stories unlock — then point your camera
+            at a printed photo and watch the video play right on top of it.
+          </p>
+          <div class="hero__ctas">
+            <a class="app-store" href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener">
+              <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download Kemutan on the App Store" />
             </a>
+            <a class="btn--quiet" href="#how">see how it works ↓</a>
           </div>
+          <p class="hero__small">free · iPhone &amp; iPad · everything stays in your iCloud</p>
         </div>
-      </section>
 
-      <!-- Main features as card layout -->
-      <section id="features" class="container features">
-        <h2>Main features</h2>
-        <p class="muted">Core capabilities of Kemutan — tap a card to learn more.</p>
-        <div class="features-grid">
-          <article class="feature-card" data-feature="scan" role="button" tabindex="0" aria-label="Feature: Scan Photo">
-            <div class="fc-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="2" y="6" width="20" height="12" rx="2" fill="#fff" opacity="0.06"/>
-                <circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="1.2" opacity="0.9" fill="none"/>
-                <path d="M7 7 L8.5 5" stroke="#fff" stroke-width="1" stroke-linecap="round" opacity="0.9"/>
-              </svg>
+        <div class="hero__media">
+          <div class="demo">
+            <span class="tape" aria-hidden="true"></span>
+            <div class="demo__screen">
+              <!-- preload="none": the poster carries the page, the clip only
+                   downloads once it scrolls into view (see script.js). -->
+              <video
+                id="demo-video"
+                muted
+                loop
+                playsinline
+                preload="none"
+                aria-label="Kemutan playing a memory in AR over a printed photo">
+                <source src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/demo.mp4" type="video/mp4" />
+              </video>
             </div>
-            <div class="feature-body">
-              <h3>Scan Photo</h3>
-              <p>Recognizes printed photos and links the matching video for AR playback.</p>
-            </div>
-          </article>
-
-          <article class="feature-card" data-feature="icloud" role="button" tabindex="0" aria-label="Feature: iCloud Sync">
-            <div class="fc-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M7 17h10a4 4 0 0 0 0-8 5 5 0 0 0-9.9 1A3.5 3.5 0 0 0 7 17z" fill="#fff" opacity="0.06"/>
-                <path d="M7 17h10" stroke="#fff" stroke-width="0.9" stroke-linecap="round" opacity="0.9"/>
-              </svg>
-            </div>
-            <div class="feature-body">
-              <h3>iCloud Sync</h3>
-              <p>Photos and videos are stored in iCloud and automatically sync across devices using the same iCloud account.</p>
-            </div>
-          </article>
-
-          <article class="feature-card" data-feature="shared" role="button" tabindex="0" aria-label="Feature: Shared Albums">
-            <div class="fc-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="8" cy="8" r="2" fill="#fff" opacity="0.06"/>
-                <circle cx="16" cy="8" r="2" fill="#fff" opacity="0.06"/>
-                <path d="M3 20c2-4 8-4 9-4s7 0 9 4" stroke="#fff" stroke-width="0.9" stroke-linecap="round" opacity="0.9" fill="none"/>
-              </svg>
-            </div>
-            <div class="feature-body">
-              <h3>Shared Albums (CloudKit)</h3>
-              <p>Create Shared Albums to build Memories with family and friends; contributors can add photos and videos to shared collections.</p>
-            </div>
-          </article>
-
-          <article class="feature-card" data-feature="ar" role="button" tabindex="0" aria-label="Feature: AR Playback">
-            <div class="fc-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M8 5v14l11-7L8 5z" fill="#fff" opacity="0.08"/>
-                <path d="M8 5v14l11-7L8 5z" stroke="#fff" stroke-width="0.8" stroke-linejoin="round" opacity="0.9" fill="none"/>
-              </svg>
-            </div>
-            <div class="feature-body">
-              <h3>AR Playback</h3>
-              <p>Play linked videos right over the printed photo for an immersive moment.</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-  <section id="gallery" class="container gallery">
-    <h2>Screenshots</h2>
-    <p class="muted">Sneak peek — these are screenshots of the app interface.</p>
-        <div class="cards">
-          <article class="card" data-title="Summer Reunion" data-desc="App screenshot showing the camera scan UI." data-full="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-1.png" tabindex="0" role="button" aria-label="Open screenshot Summer Reunion">
-            <div class="card-media">
-              <img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-1.png" alt="memory 1" />
-            </div>
-          </article>
-
-          <article class="card" data-title="Road Trip" data-desc="Screenshot of the playback controls inside the app." data-full="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-2.png" tabindex="0" role="button" aria-label="Open screenshot Road Trip">
-            <div class="card-media">
-              <img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-2.png" alt="memory 2" />
-            </div>
-          </article>
-
-          <article class="card" data-title="Birthday Surprise" data-desc="Screenshot of the AR overlay in action." data-full="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-3.png" tabindex="0" role="button" aria-label="Open screenshot Birthday Surprise">
-            <div class="card-media">
-              <img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-3.png" alt="memory 3" />
-            </div>
-          </article>
-
-          <article class="card" data-title="Cozy Evening" data-desc="Settings and share screen screenshot." data-full="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-4.png" tabindex="0" role="button" aria-label="Open screenshot Cozy Evening">
-            <div class="card-media">
-              <img loading="lazy" src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-4.png" alt="memory 4" />
-            </div>
-          </article>
-        </div>
-      </section>
-      <!-- end gallery (screenshots only) -->
-
-      <!-- Features modal -->
-      <div id="features-modal" class="modal" aria-hidden="true">
-        <div class="modal-backdrop"></div>
-        <div class="modal-panel">
-          <button class="modal-close" aria-label="Close">✕</button>
-          <h3>Main Features</h3>
-          <ul>
-            <li><strong>iCloud sync:</strong> Photos and videos are stored in iCloud and automatically sync across devices signed into the same iCloud account.</li>
-            <li><strong>Shared Albums (CloudKit):</strong> Create Shared Albums to build Memories with family and friends; invite collaborators and contribute photos and videos to shared collections.</li>
-            <li><strong>AR Playback:</strong> Scan a printed photo and the linked video plays over the photo in augmented reality.</li>
-            <li><strong>Privacy & control:</strong> Owners control sharing and membership of shared albums; data uses Apple Cloud services.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Photo detail modal (image only) -->
-      <div id="photo-modal" class="modal" aria-hidden="true">
-        <div class="modal-backdrop"></div>
-        <div class="modal-panel">
-          <button class="modal-close" aria-label="Close">✕</button>
-          <div class="photo-controls" aria-hidden="false">
-            <button id="prev-photo" class="ctrl" aria-label="Previous photo">‹</button>
-            <button id="next-photo" class="ctrl" aria-label="Next photo">›</button>
-            <a id="download-photo" class="ctrl download" href="#" download aria-label="Download photo">⬇</a>
-          </div>
-          <div class="photo-detail">
-            <img id="photo-full" src="" alt="" />
+            <p class="demo__caption">a print, playing itself</p>
           </div>
         </div>
       </div>
-    </main>
+    </section>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-  <div class="left">© <span id="year"></span> Kemutan — All rights reserved.</div>
-  <div class="right"><a href="privacy.html">Privacy</a></div>
+    <!-- ================= How it works ================= -->
+    <section id="how" class="steps">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="note">four steps, no filters —</p>
+          <h2>How a dump works</h2>
+        </div>
+
+        <div class="steps__grid">
+          <article class="step reveal">
+            <p class="step__no" aria-hidden="true">1</p>
+            <h3>Start a dump</h3>
+            <p>Name it, stick a label on it, and pick how full it has to get before its Stories unlock.</p>
+          </article>
+
+          <article class="step reveal">
+            <p class="step__no" aria-hidden="true">2</p>
+            <h3>Invite the others</h3>
+            <p>Share the link. Everyone who was there dumps their side of the story into the same pile.</p>
+          </article>
+
+          <article class="step reveal">
+            <p class="step__no" aria-hidden="true">3</p>
+            <h3>Dump the memories</h3>
+            <p>A photo, the video that goes with it, and a few messy words. That's the whole form.</p>
+          </article>
+
+          <article class="step reveal">
+            <p class="step__no" aria-hidden="true">4</p>
+            <h3>Open it later</h3>
+            <p>Once it's full enough the reel plays — and any print you scan comes back to life.</p>
+          </article>
+        </div>
       </div>
-    </footer>
+    </section>
 
-    <script src="script.js" defer></script>
-  <a class="mobile-download-cta" href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener">Get Kemutan — Free on the App Store</a>
-  </body>
+    <!-- ================= Features ================= -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="note">what's inside —</p>
+          <h2>Four things it does that nothing else does</h2>
+        </div>
+
+        <div class="features__grid">
+          <article class="feature feature--stories reveal">
+            <p class="feature__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="11" width="14" height="10" rx="2.5" />
+                <path d="M8 11V7.5a4 4 0 0 1 8 0V11" />
+              </svg>
+            </p>
+            <div>
+              <h3>Stories that stay shut</h3>
+              <p>The reel is locked until the dump holds enough memories. Everyone in it sees the same countdown, so it's a reason to keep dumping.</p>
+            </div>
+          </article>
+
+          <article class="feature feature--scan reveal">
+            <p class="feature__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16" />
+                <path d="M7 12h10" />
+              </svg>
+            </p>
+            <div>
+              <h3>Printed photos that move</h3>
+              <p>Point the camera at a real, printed photo. The video mounts itself in a paper print right on top of it, in AR, with the sound.</p>
+            </div>
+          </article>
+
+          <article class="feature feature--together reveal">
+            <p class="feature__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="8" r="3" />
+                <path d="M3 20c1.4-3.4 4-5 6-5s4.6 1.6 6 5" />
+                <path d="M16 5.5a3 3 0 0 1 0 5.6M18.5 20c-.5-1.7-1.2-3-2-4" />
+              </svg>
+            </p>
+            <div>
+              <h3>Dump together</h3>
+              <p>Built on Apple's shared albums, so a dump belongs to everyone in it. No accounts to chase, no upload limits to argue with.</p>
+            </div>
+          </article>
+
+          <article class="feature feature--icloud reveal">
+            <p class="feature__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 18h10a3.6 3.6 0 0 0 0-7.2 5 5 0 0 0-9.6 1A3.2 3.2 0 0 0 7 18z" />
+              </svg>
+            </p>
+            <div>
+              <h3>Yours, in your iCloud</h3>
+              <p>Photos and videos live in your own iCloud and sync across your devices. We don't keep a copy, and there's nothing to sell.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Screenshots ================= -->
+    <section id="shots" class="shots">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="note">a sneak peek —</p>
+          <h2>Straight off the phone</h2>
+          <p class="muted">Tap any print to see it bigger.</p>
+        </div>
+
+        <div class="shots__grid">
+          <button class="shot reveal" type="button" aria-label="View the photo dump screen larger">
+            <figure class="print">
+              <img src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-1.png" alt="A photo dump holding every print from one trip" loading="lazy" decoding="async" />
+            </figure>
+          </button>
+
+          <button class="shot reveal" type="button" aria-label="View the journey timeline larger">
+            <figure class="print">
+              <img src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-2.png" alt="The journey timeline, scrolling back through the years" loading="lazy" decoding="async" />
+            </figure>
+          </button>
+
+          <button class="shot reveal" type="button" aria-label="View the shoebox screen larger">
+            <figure class="print">
+              <img src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-3.png" alt="The shoebox: one photo dump per chapter of your life" loading="lazy" decoding="async" />
+            </figure>
+          </button>
+
+          <button class="shot reveal" type="button" aria-label="View the unlocked Stories screen larger">
+            <figure class="print">
+              <img src="https://raw.githubusercontent.com/willsas/kemutan-asset/refs/heads/main/screenshoot-4.png" alt="A dump filled up, with its Stories unlocked and ready to play" loading="lazy" decoding="async" />
+            </figure>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Closing CTA ================= -->
+    <section class="closing">
+      <div class="container">
+        <div class="closing__card reveal">
+          <p class="badge">free to start</p>
+          <h2>Start your first dump</h2>
+          <p>Grab the people who were there, throw the photos in, and seal the rest for later.</p>
+          <a class="app-store" href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download Kemutan on the App Store" />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>© <span id="year">2026</span> Kemutan · dump it now. relive it later.</p>
+      <nav aria-label="Footer">
+        <a href="privacy.html">Privacy</a>
+        <a href="mailto:willasaskara+kemutansupport@gmail.com">Support</a>
+        <a href="https://apps.apple.com/app/id6746507955" target="_blank" rel="noopener">App Store</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Native <dialog>: Escape, focus trapping and the backdrop come free. -->
+  <dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer">
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox__bar">
+      <button class="lightbox__btn" type="button" id="lightbox-prev" aria-label="Previous screenshot">‹</button>
+      <button class="lightbox__btn" type="button" id="lightbox-close" aria-label="Close viewer">✕</button>
+      <button class="lightbox__btn" type="button" id="lightbox-next" aria-label="Next screenshot">›</button>
+    </div>
+  </dialog>
+
+  <script src="script.js" defer></script>
+</body>
 </html>
